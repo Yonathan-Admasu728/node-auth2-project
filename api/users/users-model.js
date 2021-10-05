@@ -1,23 +1,7 @@
 const db = require('../../data/db-config.js');
 
 function find() {
-  /**
-    You will need to join two tables.
-    Resolves to an ARRAY with all users.
-
-    [
-      {
-        "user_id": 1,
-        "username": "bob",
-        "role_name": "admin"
-      },
-      {
-        "user_id": 2,
-        "username": "sue",
-        "role_name": "instructor"
-      }
-    ]
-   */
+  
    return db('users')
       .join('roles', 'users.role_id', 'roles.role_id')
       .select('user_id', ' username', 'role_name')
@@ -25,7 +9,7 @@ function find() {
 
 function findBy(filter) {
   /**
-    You will need to join two tables.
+    I need to join two tables.
     Resolves to an ARRAY with all users that match the filter condition.
 
     [
@@ -45,16 +29,7 @@ function findBy(filter) {
 }
 
 function findById(user_id) {
-  /**
-    You will need to join two tables.
-    Resolves to the user with the given user_id.
 
-    {
-      "user_id": 2,
-      "username": "sue",
-      "role_name": "instructor"
-    }
-   */
     return db('users')
     .join('roles', 'users.role_id', 'roles.role_id')
     .select('user_id', ' username', 'role_name')
@@ -79,7 +54,7 @@ function findById(user_id) {
     "role_name": "team lead"
   }
  */
-async function add({ username, password, role_name }) { // done for you
+async function add({ username, password, role_name }) { 
   let created_user_id
   await db.transaction(async trx => {
     let role_id_to_use
